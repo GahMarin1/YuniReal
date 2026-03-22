@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="mzPEFmuNNnhoVZXdaq_Ig7Z8fTw08DZI4la-FRBGJWY" />
+<title>Run4Dead — Official Site</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:80px 24px;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(130,0,0,.3) 0%,rgba(70,0,0,.12) 45%,transparent 70%),var(--bg2);}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 38%,rgba(0,0,0,.75) 100%);pointer-events:none;z-index:1;}
+.hero-drips{position:absolute;top:0;left:0;right:0;height:100px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath d='M0,0 L0,28 Q24,46 48,28 Q72,10 96,32 Q120,56 144,30 Q168,8 192,36 Q216,60 240,28 Q264,0 288,40 Q312,72 336,34 Q360,0 384,44 Q408,78 432,36 Q456,0 480,46 Q504,82 528,38 Q552,0 576,42 Q600,76 624,32 Q648,0 672,46 Q696,80 720,36 Q744,0 768,44 Q792,78 816,36 Q840,0 864,40 Q888,72 912,30 Q936,0 960,44 Q984,78 1008,36 Q1032,0 1056,42 Q1080,76 1104,32 Q1128,0 1152,44 Q1176,80 1200,36 Q1224,0 1248,46 Q1272,82 1296,38 Q1320,0 1344,42 Q1368,76 1392,34 Q1416,0 1440,38 L1440,0 Z' fill='%235a0000'/%3E%3C/svg%3E") center/cover no-repeat;z-index:2;opacity:.8;}
+#particles{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.logo-wrap{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;animation:fadein .8s ease both;}
+.logo-img{max-width:min(72vw,360px);height:auto;display:block;filter:drop-shadow(0 0 36px rgba(200,0,0,.85)) drop-shadow(0 0 72px rgba(200,0,0,.3));}
+.logo-sub{font-family:var(--mono);font-size:clamp(8px,1.8vw,11px);color:rgba(180,0,0,.7);letter-spacing:9px;text-transform:uppercase;margin-top:12px;}
+.hero-line{width:min(550px,88vw);height:1px;background:linear-gradient(90deg,transparent,var(--red),var(--red-b),var(--red),transparent);margin:30px auto;z-index:3;position:relative;animation:pulse 2.2s infinite;}
+.hero-desc{max-width:520px;text-align:center;font-size:clamp(13px,2.5vw,15px);line-height:1.9;color:#888;z-index:3;position:relative;animation:fadein .8s ease .5s both;padding:0 12px;}
+.hero-desc strong{color:#bb2020;}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:22px;z-index:3;position:relative;animation:fadein .8s ease .7s both;}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(150,0,0,.7);border:1px solid rgba(100,0,0,.3);padding:5px 14px;background:rgba(60,0,0,.1);transition:all .2s;cursor:default;}
+.tag:hover{color:#ff4444;border-color:var(--red);background:rgba(100,0,0,.2);}
+.timer-wrap{margin-top:36px;z-index:3;position:relative;text-align:center;}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8px;letter-spacing:6px;color:rgba(100,0,0,.5);z-index:3;}
+.corner{position:absolute;width:48px;height:48px;border-color:rgba(120,0,0,.4);border-style:solid;z-index:3;}
+.corner.tl{top:18px;left:18px;border-width:1px 0 0 1px;}
+.corner.tr{top:18px;right:18px;border-width:1px 1px 0 0;}
+.corner.bl{bottom:18px;left:18px;border-width:0 0 1px 1px;}
+.corner.br{bottom:18px;right:18px;border-width:0 1px 1px 0;}
+</style>
+</head>
+<body>
+<div id="crt"></div><div id="phosphor"></div><div id="flicker"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">R4D</a>
+    <ul class="nav-links" id="nav">
+      <li><a href="index.html" class="active">Início</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="devlogs.html">Devlogs</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="franquia.html">Franquia</a></li>
+    </ul>
+    <div class="hamburger" id="hb"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-text">Run4Dead <span class="ticker-sep">◆</span> Developed by SpherexMC <span class="ticker-sep">◆</span> Unreal Engine 5.0 <span class="ticker-sep">◆</span> Survival Horror <span class="ticker-sep">◆</span> Single-Player <span class="ticker-sep">◆</span> Lançamento: TBA 2026 <span class="ticker-sep">◆</span> A humanidade está perdida. Você ainda não.</span>
+    <span class="ticker-text">Run4Dead <span class="ticker-sep">◆</span> Developed by SpherexMC <span class="ticker-sep">◆</span> Unreal Engine 5.0 <span class="ticker-sep">◆</span> Survival Horror <span class="ticker-sep">◆</span> Single-Player <span class="ticker-sep">◆</span> Lançamento: TBA 2026 <span class="ticker-sep">◆</span> A humanidade está perdida. Você ainda não.</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-vignette"></div>
+  <div class="hero-drips"></div>
+  <canvas id="particles"></canvas>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+  <div class="logo-wrap">
+    <img class="logo-img" id="logoImg" src="https://i.ibb.co/b5s37r0H/file-0000000022c4720e92e0f682edf7dc26.png" alt="Run4Dead" width="1024" height="1024">
+    <div class="logo-sub">// Survive or Die Trying //</div>
+  </div>
+  <div class="hero-line"></div>
+  <p class="hero-desc">Um jogo de tiro em primeira pessoa e sobrevivência zumbi em um mundo pós-apocalíptico.<br>A civilização caiu. Os infectados tomaram tudo. <strong>Você é o que resta.</strong></p>
+  <div class="hero-tags">
+    <span class="tag">FPS</span><span class="tag">Survival Horror</span>
+    <span class="tag">Single-Player</span><span class="tag">Unreal Engine 5.0</span><span class="tag">TBA</span>
+  </div>
+  <div class="timer-wrap">
+    <script src="https://cdn.logwork.com/widget/countdown.js"></script>
+    <a href="https://logwork.com/countdown-timer" class="countdown-timer" data-style="circles" data-timezone="America/Sao_Paulo" data-language="pt" data-date="2026-03-26 20:00" data-background="#e82727" data-digitscolor="#1a1a1a">Início da Produção Do Jogo Em</a>
+  </div>
+  <div class="scroll-hint">▼ &nbsp; SCROLL &nbsp; ▼</div>
+</div>
+
+<div class="stats">
+  <div class="stats-grid" style="grid-template-columns:repeat(8,1fr)">
+    <div class="stat"><div class="stat-label">Desenvolvedora</div><div class="stat-value">SpherexMC</div></div>
+    <div class="stat"><div class="stat-label">Diretor</div><div class="stat-value">SpherexMC</div></div>
+    <div class="stat"><div class="stat-label">Motor</div><div class="stat-value">UE 5.0</div></div>
+    <div class="stat"><div class="stat-label">Lançamento</div><div class="stat-value">TBA</div></div>
+    <div class="stat"><div class="stat-label">Modo</div><div class="stat-value">Single-Player</div></div>
+    <div class="stat"><div class="stat-label">Gênero</div><div class="stat-value">FPS · Horror</div></div>
+    <div class="stat"><div class="stat-label">PC do Dev</div><div class="stat-value" style="font-size:clamp(9px,1.4vw,12px)">Asus VivoBook X1502Z</div></div>
+    <div class="stat"><div class="stat-label" style="color:var(--red-b)">Mature Content</div><div class="stat-value" style="font-size:clamp(18px,3vw,26px);color:var(--red-b);text-shadow:0 0 14px rgba(200,0,0,.6)">+18</div></div>
+  </div>
+  <div class="mature-warn">
+    <span style="color:var(--red);font-size:14px;flex-shrink:0">⚠</span>
+    <span>Este jogo será classificado como <strong>+18</strong> devido a conteúdo de <strong>gore intenso</strong> e <strong>representações de suicídio</strong>. Não recomendado para menores de idade.</span>
+  </div>
+</div>
+
+<div class="blood-sep"></div>
+
+<section id="historia"><div class="sec">
+  <div class="sec-head"><div class="sec-meta"><div class="sec-num">// 01</div><div class="sec-title" data-t="História">História</div></div><div class="sec-rule"></div></div>
+  <div class="story-grid">
+    <div class="story-card"><h3>A Origem do Vírus</h3><p>Nos Estados Unidos, um cientista cria um vírus experimental projetado para matar humanos da forma mais dolorosa possível. Ele espalha o vírus secretamente através de alimentos industrializados.</p></div>
+    <div class="story-card"><h3>O Colapso</h3><p>O vírus sofre mutações inesperadas, transformando pessoas em zumbis extremamente agressivos — causando o colapso da civilização global. Poucos sobrevivem, possuindo imunidade parcial.</p></div>
+    <div class="story-card"><h3>Quatro Anos Depois</h3><p>O mundo está quase completamente dominado pelos infectados. A <span>C.E.B.A Corp.</span> é uma das organizações restantes, responsável por desenvolver uma cura. Após quatro anos, enfrenta escassez crítica de suprimentos.</p></div>
+    <div class="story-card"><h3>As Instalações C.E.B.A</h3><p>Duas instalações: a <span>Divisão Estadual</span> nos EUA — mantendo em segredo a origem da infecção — e o <span>C.E.B.A Center</span> na China, onde cientistas trabalham no antídoto.</p></div>
+    <div class="story-card"><h3>A Missão</h3><p>O protagonista e seus aliados decidem ajudar a organização coletando materiais em regiões infestadas. Objetivo: alcançar o C.E.B.A Center na China e entregar os recursos para concluir a cura.</p></div>
+  </div>
+</div></section>
+
+<div class="blood-sep"></div>
+
+<section id="virus" style="background:var(--bg2)"><div class="sec">
+  <div class="sec-head"><div class="sec-meta"><div class="sec-num">// 02</div><div class="sec-title" data-t="Infectados">Infectados</div></div><div class="sec-rule"></div></div>
+  <div class="virus-grid">
+    <div class="virus-card"><div class="virus-type">Tipo I</div><div class="virus-name">Vírus Inteligente</div><div class="virus-desc">Infectados que mantêm parte da inteligência humana. Capazes de caçar sobreviventes e agir de forma estratégica. Os mais perigosos — imprevisíveis e calculistas.</div><div class="virus-emoji">🧠</div></div>
+    <div class="virus-card"><div class="virus-type">Tipo II</div><div class="virus-name">Vírus Mutante</div><div class="virus-desc">Infectados deformados com força aumentada, ataques imprevisíveis e aparência grotesca. Resultado de mutações secundárias que distorcem o corpo ao extremo.</div><div class="virus-emoji">☣️</div></div>
+    <div class="virus-card"><div class="virus-type">Tipo III</div><div class="virus-name">Vírus Gigante</div><div class="virus-desc">Infectados raros e enormes com grande resistência e ataques devastadores. Encontros são eventos críticos — nenhum recurso deve ser desperdiçado.</div><div class="virus-emoji">💀</div></div>
+  </div>
+</div></section>
+
+<div class="blood-sep"></div>
+
+<section id="dubladores"><div class="sec">
+  <div class="sec-head"><div class="sec-meta"><div class="sec-num">// 03</div><div class="sec-title" data-t="Dubladores">Dubladores</div></div><div class="sec-rule"></div></div>
+  <div class="cast-list">
+    <div class="cast-row"><span class="cast-n">01</span><a class="cast-link" href="https://youtube.com/@jlkkkj?si=KQrmk9xCUuT_btp5" target="_blank" rel="noopener">JL</a><a class="yt-btn" href="https://youtube.com/@jlkkkj?si=KQrmk9xCUuT_btp5" target="_blank" rel="noopener">▶ YouTube</a></div>
+    <div class="cast-row"><span class="cast-n">02</span><span class="cast-name">Clover</span></div>
+    <div class="cast-row"><span class="cast-n">03</span><a class="cast-link" href="https://youtube.com/@spherex.thegod?si=GOlwaBZml6aP7RUL" target="_blank" rel="noopener">SpherexMC</a><a class="yt-btn" href="https://youtube.com/@spherex.thegod?si=GOlwaBZml6aP7RUL" target="_blank" rel="noopener">▶ YouTube</a></div>
+  </div>
+</div></section>
+
+<footer>
+  <div class="foot-logo">Run4Dead</div>
+  <div class="foot-text">© SpherexMC · Todos os direitos reservados</div>
+  <div class="foot-sub">Inspired by Left 4 Dead &nbsp;·&nbsp; Unreal Engine 5.0</div>
+  <div class="foot-email">Email para contato: <a href="mailto:issacrawcore247@gmail.com">issacrawcore247@gmail.com</a></div>
+</footer>
+
+<script>
+document.getElementById('hb').onclick=function(){document.getElementById('nav').classList.toggle('open');};
+(function(){var c=document.getElementById('particles'),x=c.getContext('2d'),W,H,ps=[];function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}resize();window.addEventListener('resize',resize);function spawn(){return{x:Math.random()*W,y:H*.55+Math.random()*H*.45,r:Math.random()*2+.4,vy:-(Math.random()*.5+.12),vx:(Math.random()-.5)*.3,a:Math.random()*.3+.1,life:0,max:Math.random()*200+70};}for(var i=0;i<50;i++)ps.push(spawn());(function draw(){x.clearRect(0,0,W,H);for(var i=0;i<ps.length;i++){var p=ps[i];p.x+=p.vx;p.y+=p.vy;p.life++;var al=p.a*(1-p.life/p.max);x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle='rgba(140,0,0,'+al+')';x.fill();if(p.life>=p.max)ps[i]=spawn();}requestAnimationFrame(draw);})();})();
+(function(){var img=document.getElementById('logoImg');if(!img)return;var base='drop-shadow(0 0 36px rgba(200,0,0,.85)) drop-shadow(0 0 72px rgba(200,0,0,.3))';function fire(){var frames=[function(){img.style.transform='translate(-9px,2px) skewX(-2.5deg)';img.style.filter='drop-shadow(-9px 0 0 #ff0000) drop-shadow(9px 0 0 #00ffff) drop-shadow(0 0 36px rgba(200,0,0,.8))';},function(){img.style.transform='translate(9px,-2px) skewX(2.5deg)';img.style.filter='drop-shadow(9px 0 0 #ff0000) drop-shadow(-9px 0 0 #00ffff) drop-shadow(0 0 36px rgba(200,0,0,.8))';},function(){img.style.transform='translate(0)';img.style.filter=base;}];var i=0,steps=Math.floor(Math.random()*4)+2,t=setInterval(function(){frames[i%frames.length]();i++;if(i>=steps){clearInterval(t);img.style.transform='translate(0)';img.style.filter=base;}},55);}(function loop(){setTimeout(function(){fire();loop();},Math.random()*2800+1200);})();})();
+(function(){var crt=document.getElementById('crt');setInterval(function(){if(Math.random()<.3){var y=Math.random()*100,h=Math.random()*3+1,s=(Math.random()-.5)*12,el=document.createElement('div');el.style.cssText='position:absolute;left:0;right:0;top:'+y+'%;height:'+h+'px;background:rgba(255,30,0,0.07);transform:translateX('+s+'px);pointer-events:none;';crt.appendChild(el);setTimeout(function(){el.remove();},80);}},900);})();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:.08});
+document.querySelectorAll('.story-card,.virus-card,.cast-row,.stat').forEach(function(el,i){el.style.opacity='0';el.style.transform='translateY(16px)';el.style.transition='opacity .5s ease '+(i*.06)+'s,transform .5s ease '+(i*.06)+'s,border-color .3s,background .3s,box-shadow .3s,padding .28s';io.observe(el);});
+</script>
+</body>
+</html>
